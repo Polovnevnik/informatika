@@ -1,0 +1,12 @@
+JMP start
+chislo:
+DB 21
+DB 05
+
+start:
+MOV C, chislo
+Function:
+MOV A, [C]
+INC C
+MOV B, [C]
+ADD A,B
