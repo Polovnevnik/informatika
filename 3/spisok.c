@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
 void new(void);
 void search(void);
 void soxran(void);
@@ -97,9 +95,6 @@ void izvlech();
     
    }
 
-
-
-
 void spismaker( book *ok, book **begin, book **end)
   {        
         
@@ -178,8 +173,6 @@ void search(void)
      
  
  }
-
-
 
 void udalenie (book *nach,book *kon,book **begin, book **end)
  {  book *pr;
