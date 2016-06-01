@@ -1,0 +1,34 @@
+;Вывод произвольной переменной
+MOV A,09; Переменная , которая будет выводиться
+
+
+call fun ; вызов попрограммы
+hlt
+
+fun:
+
+push A
+div 100
+mov D,232
+cmp A,0 ; Сравнение
+jz fun2 ;Условный переход
+
+fun2:
+mul 100
+mov B,A
+pop A
+sub A,B
+push A
+div 10
+add A,48
+mov [D],A
+inc D
+sub A,48
+mul 10
+mov B,A
+pop A
+sub A,B
+add A,48
+mov [D],A
+
+ret

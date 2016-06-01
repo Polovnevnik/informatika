@@ -1,0 +1,34 @@
+	
+;Данная прогр-ма высчитывает факт-риал
+
+
+mov A,4 ; Здесь можно задать число от 0 до 255
+mov B,A
+dec B
+cmp A,1 ;Если заданное число есть 1
+je esed ; jz если равно
+cmp A,0 ; Если заданное число есть 0
+jz esnull ; jz-если ноль
+mov D,A
+
+fac:
+dec D
+push D
+cmp D,0
+jnz fac
+pop C
+cmp C,0
+jz pod
+ret
+pod:
+pop C
+mul C
+cmp C,B
+jb pod
+
+
+hlt
+esnull:
+mov A,1
+esed:
+hlt

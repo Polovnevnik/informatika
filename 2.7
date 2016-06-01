@@ -1,0 +1,130 @@
+mov A,3
+
+CMP A, 0
+JZ ZERO
+CMP A,5
+JA mnogo
+
+MOV B,A
+DANO:
+PUSH A
+MOV D, 232
+ADD B, 48
+MOV [D], B
+MOV B,A
+MOV D, 233
+MOV [D], 33 ; 33 "шифр" знака !
+INC D
+MOV [D], 61 ; 61 "шифр" знака =
+MOV C, 49
+
+umnogenie:
+INC D
+MOV [D], C
+INC C
+INC D
+MOV [D], 42
+DEC A
+CMP A,0
+JA umnogenie
+MOV [D], 61
+POP A
+
+multi:
+DEC B
+CMP B,0
+JBE printAns
+MUL B
+JMP multi
+
+ZERO:
+MOV A,1
+JMP DANO
+
+printAns:
+MOV B,A
+
+
+hundred:
+DIV 100
+PUSH A
+MUL 100
+SUB B,A
+MOV A,B
+DIV 10
+PUSH A
+MUL 10
+SUB B,A
+MOV A,B
+MOV D,B
+POP A
+MOV C,A
+POP A
+MOV B,A
+MOV A,D
+PUSH A
+MOV A,C
+PUSH A
+MOV A,B
+MOV B,253
+
+prod:
+CMP A,0
+JNZ sled
+
+
+out1:
+INC B
+POP A
+CMP A,0
+JNZ sled
+
+INC B
+POP A
+
+
+sled:
+MOV D,A
+MOV A,0
+JMP perex
+
+
+
+perex:
+CMP D,A
+JZ output
+INC A
+JMP perex
+
+output:
+ADD A, 48
+MOV [B],A
+INC B
+CMP B,0
+JZ END
+CMP B,255
+JBE sledd
+END:
+HLT
+
+
+sledd:
+POP A
+MOV D,A
+MOV A,0
+
+
+
+db: DB "Error" ;Если число больше 5 (так как дальше факториалы больше 255)
+DB 0
+mnogo:
+MOV C, db
+MOV D, 232
+perepoln:
+MOV A, [C]
+MOV [D], A
+INC C
+INC D
+CMP B, [C]
+JNZ perepoln
+HLT
